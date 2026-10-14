@@ -1691,6 +1691,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$ico
 ;
 ;
 ;
+/** Used for skills that have no logo color of their own (general ideas such as DNS or TCP/IP). */ const ACCENT = "#B8A0FF";
+/** "#RRGGBB" to "rgba(r, g, b, alpha)", so one logo color can make its tint and border shades. */ function withAlpha(hex, alpha) {
+    const n = parseInt(hex.slice(1), 16);
+    return `rgba(${n >> 16 & 255}, ${n >> 8 & 255}, ${n & 255}, ${alpha})`;
+}
 /** Entrance of one card. The parent section staggers these, so cards arrive one after another. */ const cardVariants = {
     hidden: {
         opacity: 0,
@@ -1709,10 +1714,19 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$ico
 };
 function SkillCard({ skill }) {
     const Icon = skill.icon ?? __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fi$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FiCode"]; // consistent fallback when a skill has no icon
+    const color = skill.color ?? ACCENT;
+    // The logo color and its shades, handed to the classes below as CSS variables.
+    const logoVars = {
+        "--logo": color,
+        "--logo-tint": withAlpha(color, 0.12),
+        "--logo-edge": withAlpha(color, 0.3),
+        "--logo-edge-strong": withAlpha(color, 0.6)
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$motion$2f$dist$2f$es$2f$react$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["motion"].li, {
         variants: cardVariants,
         className: "group relative rounded-2xl outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B8A0FF]",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            style: logoVars,
             className: "relative flex h-full min-h-[7.25rem] flex-col justify-between overflow-hidden rounded-2xl border border-[#343044] bg-[#1B1926]/70 p-4 transition-[translate,scale,border-color,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:border-[#B8A0FF]/50 hover:shadow-[0_14px_34px_-14px_rgba(184,160,255,0.40)] active:scale-[0.98] group-focus-visible:-translate-y-1 group-focus-visible:border-[#B8A0FF]/60 group-focus-visible:shadow-[0_14px_34px_-14px_rgba(184,160,255,0.40)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:group-focus-visible:translate-y-0",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1720,22 +1734,22 @@ function SkillCard({ skill }) {
                     className: "pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_0%,rgba(184,160,255,0.18),transparent_62%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100"
                 }, void 0, false, {
                     fileName: "[project]/components/skills/SkillCard.tsx",
-                    lineNumber: 33,
+                    lineNumber: 55,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                    className: "relative grid size-11 place-items-center rounded-xl border border-[#B8A0FF]/20 bg-[#B8A0FF]/10 text-[#B8A0FF] transition-colors duration-300 group-hover:border-[#B8A0FF]/50 group-hover:text-[#F2F0F7] group-focus-visible:border-[#B8A0FF]/50 group-focus-visible:text-[#F2F0F7]",
+                    className: "relative grid size-11 place-items-center rounded-xl border border-[color:var(--logo-edge)] bg-[color:var(--logo-tint)] text-[color:var(--logo)] transition-colors duration-300 group-hover:border-[color:var(--logo-edge-strong)] group-focus-visible:border-[color:var(--logo-edge-strong)]",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Icon, {
                         "aria-hidden": "true",
                         className: "size-6 transition-transform duration-300 ease-out group-hover:-rotate-6 group-hover:scale-110 group-focus-visible:-rotate-6 group-focus-visible:scale-110 motion-reduce:transition-none motion-reduce:group-hover:rotate-0 motion-reduce:group-hover:scale-100 motion-reduce:group-focus-visible:rotate-0 motion-reduce:group-focus-visible:scale-100"
                     }, void 0, false, {
                         fileName: "[project]/components/skills/SkillCard.tsx",
-                        lineNumber: 39,
+                        lineNumber: 61,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/skills/SkillCard.tsx",
-                    lineNumber: 38,
+                    lineNumber: 60,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1743,18 +1757,18 @@ function SkillCard({ skill }) {
                     children: skill.name
                 }, void 0, false, {
                     fileName: "[project]/components/skills/SkillCard.tsx",
-                    lineNumber: 45,
+                    lineNumber: 67,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/components/skills/SkillCard.tsx",
-            lineNumber: 31,
+            lineNumber: 50,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/components/skills/SkillCard.tsx",
-        lineNumber: 27,
+        lineNumber: 46,
         columnNumber: 5
     }, this);
 }
@@ -1786,15 +1800,18 @@ const SKILL_CATEGORIES = [
         skills: [
             {
                 name: "Python",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiPython"]
+                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiPython"],
+                color: "#4B8BBE"
             },
             {
                 name: "JavaScript",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiJavascript"]
+                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiJavascript"],
+                color: "#F7DF1E"
             },
             {
                 name: "Rust",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiRust"]
+                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiRust"],
+                color: "#F74C00"
             }
         ]
     },
@@ -1805,23 +1822,28 @@ const SKILL_CATEGORIES = [
         skills: [
             {
                 name: "HTML5",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaHtml5"]
+                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaHtml5"],
+                color: "#E34F26"
             },
             {
                 name: "CSS3",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaCss3Alt"]
+                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaCss3Alt"],
+                color: "#33A9DC"
             },
             {
                 name: "React",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiReact"]
+                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiReact"],
+                color: "#61DAFB"
             },
             {
                 name: "Next.js",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiNextdotjs"]
+                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiNextdotjs"],
+                color: "#F2F0F7"
             },
             {
                 name: "Tailwind CSS",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiTailwindcss"]
+                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiTailwindcss"],
+                color: "#06B6D4"
             },
             {
                 name: "Responsive Web Design",
@@ -1836,7 +1858,8 @@ const SKILL_CATEGORIES = [
         skills: [
             {
                 name: "FastAPI",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiFastapi"]
+                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiFastapi"],
+                color: "#05A593"
             },
             {
                 name: "REST API Development",
@@ -1848,11 +1871,13 @@ const SKILL_CATEGORIES = [
             },
             {
                 name: "JSON",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiJson"]
+                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiJson"],
+                color: "#F2F0F7"
             },
             {
                 name: "Node.js",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiNodedotjs"]
+                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiNodedotjs"],
+                color: "#5FA04E"
             }
         ]
     },
@@ -1863,7 +1888,8 @@ const SKILL_CATEGORIES = [
         skills: [
             {
                 name: "PostgreSQL",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiPostgresql"]
+                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiPostgresql"],
+                color: "#5B8DD9"
             },
             {
                 name: "SQL",
@@ -1878,7 +1904,8 @@ const SKILL_CATEGORIES = [
         skills: [
             {
                 name: "Linux",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiLinux"]
+                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiLinux"],
+                color: "#FCC624"
             },
             {
                 name: "Computer Networking",
@@ -1906,7 +1933,8 @@ const SKILL_CATEGORIES = [
             },
             {
                 name: "OWASP Top 10",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiOwasp"]
+                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiOwasp"],
+                color: "#F2F0F7"
             }
         ]
     },
@@ -1917,19 +1945,23 @@ const SKILL_CATEGORIES = [
         skills: [
             {
                 name: "Git",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiGit"]
+                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiGit"],
+                color: "#F05032"
             },
             {
                 name: "GitHub",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiGithub"]
+                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiGithub"],
+                color: "#F2F0F7"
             },
             {
                 name: "VS Code",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$vsc$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["VscCode"]
+                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$vsc$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["VscCode"],
+                color: "#3FA3E6"
             },
             {
                 name: "Postman",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiPostman"]
+                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$si$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SiPostman"],
+                color: "#FF6C37"
             },
             {
                 name: "Linux Command Line",
@@ -1937,7 +1969,8 @@ const SKILL_CATEGORIES = [
             },
             {
                 name: "Burp Suite",
-                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$tb$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TbBug"]
+                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$tb$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TbBug"],
+                color: "#FF6633"
             }
         ]
     }

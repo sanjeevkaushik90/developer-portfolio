@@ -877,14 +877,13 @@
     border-color: #b8a0ff;
   }
 
-  .border-\[\#B8A0FF\]\/20 {
-    border-color: #b8a0ff33;
-    border-color: lab(70.8209% 24.0818 -44.4676 / .2);
-  }
-
   .border-\[\#B8A0FF\]\/25 {
     border-color: #b8a0ff40;
     border-color: lab(70.8209% 24.0818 -44.4676 / .25);
+  }
+
+  .border-\[color\:var\(--logo-edge\)\] {
+    border-color: var(--logo-edge);
   }
 
   .border-border {
@@ -934,6 +933,10 @@
   .bg-\[\#B8A0FF\]\/10 {
     background-color: #b8a0ff1a;
     background-color: lab(70.8209% 24.0818 -44.4676 / .1);
+  }
+
+  .bg-\[color\:var\(--logo-tint\)\] {
+    background-color: var(--logo-tint);
   }
 
   .bg-accent {
@@ -1171,6 +1174,10 @@
     color: lab(95.1025% 1.62211 -3.13694 / .9);
   }
 
+  .text-\[color\:var\(--logo\)\] {
+    color: var(--logo);
+  }
+
   .text-accent {
     color: var(--accent);
   }
@@ -1339,9 +1346,8 @@
       rotate: -6deg;
     }
 
-    .group-hover\:border-\[\#B8A0FF\]\/50:is(:where(.group):hover *) {
-      border-color: #b8a0ff80;
-      border-color: lab(70.8209% 24.0818 -44.4676 / .5);
+    .group-hover\:border-\[color\:var\(--logo-edge-strong\)\]:is(:where(.group):hover *) {
+      border-color: var(--logo-edge-strong);
     }
 
     .group-hover\:bg-\[\#B8A0FF\]\/20:is(:where(.group):hover *) {
@@ -1351,10 +1357,6 @@
 
     .group-hover\:text-\[\#B8A0FF\]:is(:where(.group):hover *) {
       color: #b8a0ff;
-    }
-
-    .group-hover\:text-\[\#F2F0F7\]:is(:where(.group):hover *) {
-      color: #f2f0f7;
     }
 
     .group-hover\:opacity-100:is(:where(.group):hover *) {
@@ -1378,18 +1380,13 @@
     rotate: -6deg;
   }
 
-  .group-focus-visible\:border-\[\#B8A0FF\]\/50:is(:where(.group):focus-visible *) {
-    border-color: #b8a0ff80;
-    border-color: lab(70.8209% 24.0818 -44.4676 / .5);
-  }
-
   .group-focus-visible\:border-\[\#B8A0FF\]\/60:is(:where(.group):focus-visible *) {
     border-color: #b8a0ff99;
     border-color: lab(70.8209% 24.0818 -44.4676 / .6);
   }
 
-  .group-focus-visible\:text-\[\#F2F0F7\]:is(:where(.group):focus-visible *) {
-    color: #f2f0f7;
+  .group-focus-visible\:border-\[color\:var\(--logo-edge-strong\)\]:is(:where(.group):focus-visible *) {
+    border-color: var(--logo-edge-strong);
   }
 
   .group-focus-visible\:opacity-100:is(:where(.group):focus-visible *) {

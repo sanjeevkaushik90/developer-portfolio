@@ -39,6 +39,8 @@ import { VscCode } from "react-icons/vsc";
  * Skills are listed by name only, on purpose. There are no levels or percentages, so nothing here claims
  * mastery of anything you are still learning.
  *
+ * Colors: each brand skill has the color of its logo; generic skills use the lavender accent.
+ *
  * Icons: every one below exists in react-icons 5.0 and in the latest 5.x. If a skill has no `icon`, the card
  * shows a neutral code icon instead. Brand icons that are missing from some versions (Burp Suite, and the
  * VS Code logo) use a close generic icon; if your react-icons has SiBurpsuite or SiVisualstudiocode you can
@@ -50,6 +52,12 @@ export type CategoryId = "languages" | "frontend" | "backend" | "databases" | "s
 export type Skill = {
   name: string;
   icon?: IconType;
+  /**
+   * The logo color, as a hex value. Skills without one (general ideas such as DNS or TCP/IP, which have no
+   * logo) use the lavender accent. Colors are tuned for the dark cards: logos that are black in real life
+   * (Next.js, GitHub, JSON, OWASP) are shown in the page's light text color so they stay visible.
+   */
+  color?: string;
 };
 
 export type SkillCategory = {
@@ -67,9 +75,9 @@ export const SKILL_CATEGORIES: readonly SkillCategory[] = [
     title: "Programming Languages",
     filterLabel: "Programming",
     skills: [
-      { name: "Python", icon: SiPython },
-      { name: "JavaScript", icon: SiJavascript },
-      { name: "Rust", icon: SiRust },
+      { name: "Python", icon: SiPython, color: "#4B8BBE" },
+      { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
+      { name: "Rust", icon: SiRust, color: "#F74C00" },
     ],
   },
   {
@@ -77,11 +85,11 @@ export const SKILL_CATEGORIES: readonly SkillCategory[] = [
     title: "Frontend Development",
     filterLabel: "Frontend",
     skills: [
-      { name: "HTML5", icon: FaHtml5 },
-      { name: "CSS3", icon: FaCss3Alt },
-      { name: "React", icon: SiReact },
-      { name: "Next.js", icon: SiNextdotjs },
-      { name: "Tailwind CSS", icon: SiTailwindcss },
+      { name: "HTML5", icon: FaHtml5, color: "#E34F26" },
+      { name: "CSS3", icon: FaCss3Alt, color: "#33A9DC" },
+      { name: "React", icon: SiReact, color: "#61DAFB" },
+      { name: "Next.js", icon: SiNextdotjs, color: "#F2F0F7" },
+      { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
       { name: "Responsive Web Design", icon: TbDevices },
     ],
   },
@@ -90,11 +98,11 @@ export const SKILL_CATEGORIES: readonly SkillCategory[] = [
     title: "Backend Development",
     filterLabel: "Backend",
     skills: [
-      { name: "FastAPI", icon: SiFastapi },
+      { name: "FastAPI", icon: SiFastapi, color: "#05A593" },
       { name: "REST API Development", icon: TbApi },
       { name: "HTTP", icon: TbArrowsExchange },
-      { name: "JSON", icon: SiJson },
-      { name: "Node.js", icon: SiNodedotjs },
+      { name: "JSON", icon: SiJson, color: "#F2F0F7" },
+      { name: "Node.js", icon: SiNodedotjs, color: "#5FA04E" },
     ],
   },
   {
@@ -102,7 +110,7 @@ export const SKILL_CATEGORIES: readonly SkillCategory[] = [
     title: "Databases",
     filterLabel: "Databases",
     skills: [
-      { name: "PostgreSQL", icon: SiPostgresql },
+      { name: "PostgreSQL", icon: SiPostgresql, color: "#5B8DD9" },
       { name: "SQL", icon: TbSql },
     ],
   },
@@ -111,14 +119,14 @@ export const SKILL_CATEGORIES: readonly SkillCategory[] = [
     title: "Cybersecurity",
     filterLabel: "Cybersecurity",
     skills: [
-      { name: "Linux", icon: SiLinux },
+      { name: "Linux", icon: SiLinux, color: "#FCC624" },
       { name: "Computer Networking", icon: LuNetwork },
       { name: "TCP/IP", icon: TbPlugConnected },
       { name: "DNS", icon: TbWorldWww },
       { name: "Web Security", icon: TbShieldLock },
       { name: "API Security", icon: TbLockCode },
       { name: "Python Security Scripting", icon: TbScript },
-      { name: "OWASP Top 10", icon: SiOwasp },
+      { name: "OWASP Top 10", icon: SiOwasp, color: "#F2F0F7" },
     ],
   },
   {
@@ -126,12 +134,12 @@ export const SKILL_CATEGORIES: readonly SkillCategory[] = [
     title: "Developer Tools",
     filterLabel: "Tools",
     skills: [
-      { name: "Git", icon: SiGit },
-      { name: "GitHub", icon: SiGithub },
-      { name: "VS Code", icon: VscCode },
-      { name: "Postman", icon: SiPostman },
+      { name: "Git", icon: SiGit, color: "#F05032" },
+      { name: "GitHub", icon: SiGithub, color: "#F2F0F7" },
+      { name: "VS Code", icon: VscCode, color: "#3FA3E6" },
+      { name: "Postman", icon: SiPostman, color: "#FF6C37" },
       { name: "Linux Command Line", icon: FiTerminal },
-      { name: "Burp Suite", icon: TbBug },
+      { name: "Burp Suite", icon: TbBug, color: "#FF6633" },
     ],
   },
 ];
