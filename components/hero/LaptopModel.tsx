@@ -117,9 +117,8 @@ function LoadingOverlay() {
   return (
     <div
       aria-hidden="true"
-      className={`pointer-events-none absolute inset-0 flex items-center justify-center text-xs tracking-wide text-[#A6A0B5] transition-opacity duration-500 ${
-        active ? "opacity-100" : "opacity-0"
-      }`}
+      className={`pointer-events-none absolute inset-0 flex items-center justify-center text-xs tracking-wide text-[#A6A0B5] transition-opacity duration-500 ${active ? "opacity-100" : "opacity-0"
+        }`}
     >
       Loading 3D model {Math.round(progress)}%
     </div>
@@ -358,8 +357,8 @@ function Laptop({ hovering, pointerTarget, controls, reduceMotion, scroll, scrol
     const s = model.rawSize;
     console.info(
       `[LaptopModel] raw size ${s.x.toFixed(3)} x ${s.y.toFixed(3)} x ${s.z.toFixed(3)}, ` +
-        `${model.points.length / 3} fit points (stride ${model.stride}), scale ${model.scale.toFixed(4)}, ` +
-        `camera distance ${framing.distance.toFixed(2)}, reduced motion: ${reduceMotion}`,
+      `${model.points.length / 3} fit points (stride ${model.stride}), scale ${model.scale.toFixed(4)}, ` +
+      `camera distance ${framing.distance.toFixed(2)}, reduced motion: ${reduceMotion}`,
     );
     const rows: Array<Record<string, string>> = [];
     model.object.traverse((child) => {
@@ -387,10 +386,12 @@ function Laptop({ hovering, pointerTarget, controls, reduceMotion, scroll, scrol
     elapsed.current += dt;
 
     // Dragging turns the laptop; letting go springs it back to the front.
-    if (!c.dragging) c.spinTarget = 0;
+    
+    const spinTarget = c.dragging ? c.spinTarget : 0;
+
     spin.current = MathUtils.damp(
       spin.current,
-      c.spinTarget,
+      spinTarget,
       c.dragging ? SPIN_DAMPING_ACTIVE : SPIN_DAMPING_RETURN,
       dt,
     );

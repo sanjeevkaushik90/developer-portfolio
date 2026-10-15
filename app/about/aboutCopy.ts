@@ -8,7 +8,7 @@
  * Put your photo at public/images/profile.jpg (a portrait, roughly 4:5, at least 800px wide).
  * Until that file exists, a neutral placeholder is shown instead.
  */
-export const PROFILE_PHOTO = "/images/profile.jpg";
+export const PROFILE_PHOTO = "/images/profile.png";
 
 export const INTERESTS = ["Python", "Web development", "Backend development", "Cybersecurity"] as const;
 

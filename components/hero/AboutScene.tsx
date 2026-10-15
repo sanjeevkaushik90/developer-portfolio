@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { motion, useTransform, type MotionValue } from "motion/react";
-import ProfilePhoto from "../../app/about/ProfilePhoto";
+import ProfilePhoto from "../about/ProfilePhoto";
 import { ABOUT_GOAL, ABOUT_INTRO, ABOUT_LEARNING, INTERESTS } from "../../app/about/aboutCopy";
 import { seg } from "./scrollMath";
 
@@ -67,19 +67,31 @@ export function AboutIntro({ progress, scrollDriven, translate }: AboutIntroProp
       className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-10 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:gap-14 lg:gap-20"
     >
       <Reveal {...common} range={[0.64, 0.9]} from="left" className="mx-auto w-full max-w-xs md:mx-0">
-        <ProfilePhoto sizes="(min-width: 768px) 30vw, 80vw" style={{ maxHeight: "62dvh" }} />
+        <ProfilePhoto
+          sizes="(min-width: 768px) 30vw, 80vw"
+          className="rounded-none"
+          style={{ maxHeight: "62dvh" }}
+        />
       </Reveal>
 
       <div className="flex flex-col items-start">
+
+
         <Reveal {...common} range={[0.68, 0.92]}>
-          <p className="text-xs font-medium uppercase tracking-[0.18em] text-[#B8A0FF]">Sanjeev Kaushik</p>
           <h2
             id="about-heading"
-            className="mt-3 text-4xl font-semibold leading-tight tracking-tight text-[#F2F0F7] sm:text-5xl"
+            className="mt-3 text-[18rm] font-bold leading-tight tracking-tight sm:text-5xl"
           >
-            About Me
+            <span
+              className="text-transparent"
+              style={{ WebkitTextStroke: "1.5px #F2F0F7" }}
+            >
+              SANJEEV
+            </span>{" "}
+            <span className="text-[#B8A0FF]">KAUSHIK</span>
           </h2>
         </Reveal>
+
 
         <Reveal
           {...common}

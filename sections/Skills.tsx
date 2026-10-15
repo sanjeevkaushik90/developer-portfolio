@@ -42,7 +42,7 @@ export default function Skills() {
   // and is not replayed as you scroll back and forth.
   const inView = useInView(sectionRef, { once: true, margin: "0px 0px -15% 0px" });
   const [filter, setFilter] = useState<Filter>("all");
-  const interacted = useRef(false);
+  const [interacted, setInteracted] = useState(false);
 
   const visible = filter === "all" ? SKILL_CATEGORIES : SKILL_CATEGORIES.filter((c) => c.id === filter);
   const visibleCount = visible.reduce((sum, c) => sum + c.skills.length, 0);
@@ -98,7 +98,7 @@ export default function Skills() {
                   type="button"
                   aria-pressed={selected}
                   onClick={() => {
-                    interacted.current = true;
+                    setInteracted(true);
                     setFilter(f.id);
                   }}
                   className={`inline-flex min-h-10 items-center gap-2 rounded-full border px-4 text-sm font-medium transition-colors duration-200 ${focusRing} ${
@@ -130,7 +130,7 @@ export default function Skills() {
                 <motion.section
                   key={category.id}
                   variants={groupVariants}
-                  custom={interacted.current ? 0.05 : 0.35}
+                  custom={interacted ? 0.05 : 0.35}
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true, margin: "0px 0px -12% 0px" }}

@@ -93,6 +93,7 @@ export const SKILL_CATEGORIES: readonly SkillCategory[] = [
       { name: "Responsive Web Design", icon: TbDevices },
     ],
   },
+
   {
     id: "backend",
     title: "Backend Development",
@@ -105,6 +106,9 @@ export const SKILL_CATEGORIES: readonly SkillCategory[] = [
       { name: "Node.js", icon: SiNodedotjs, color: "#5FA04E" },
     ],
   },
+
+
+    
   {
     id: "databases",
     title: "Databases",
@@ -114,6 +118,7 @@ export const SKILL_CATEGORIES: readonly SkillCategory[] = [
       { name: "SQL", icon: TbSql },
     ],
   },
+
   {
     id: "security",
     title: "Cybersecurity",
@@ -129,6 +134,7 @@ export const SKILL_CATEGORIES: readonly SkillCategory[] = [
       { name: "OWASP Top 10", icon: SiOwasp, color: "#F2F0F7" },
     ],
   },
+
   {
     id: "tools",
     title: "Developer Tools",

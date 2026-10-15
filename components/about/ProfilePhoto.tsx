@@ -25,8 +25,7 @@ export default function ProfilePhoto({ sizes, className = "", style }: ProfilePh
       />
       <div
         style={style}
-        className={`relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-[#B8A0FF]/25 bg-[#1B1926] shadow-[0_0_48px_-12px_rgba(184,160,255,0.30)] ${className}`}
-      >
+        className={`relative aspect-4/5 w-full overflow-hidden rounded-2xl  bg-transparent ${className}`}      >
         {failed ? (
           <div
             role="img"
@@ -42,7 +41,7 @@ export default function ProfilePhoto({ sizes, className = "", style }: ProfilePh
             fill
             priority
             sizes={sizes}
-            className="object-cover"
+            className="object-cover object-[center_35%] scale-[1.08]"
             onError={() => setFailed(true)}
           />
         )}

@@ -21,14 +21,6 @@ pnpm-debug.log*
 .DS_Store
 .vscode/
 
-# Next.js generated files
-.next/
-out/
-build/
 
-# Dependencies
-node_modules/
-
-# Local environment files
-.env*
-!.env.example
+# TypeScript build cache
+*.tsbuildinfo
