@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///home/sanjeevkaushik/Documents/portfolio2/developer-portfolio/app/loading.tsx"],"sourcesContent":["export default function Loading() {\n  return (\n    <main className=\"flex min-h-screen items-center justify-center bg-background\">\n      <div className=\"text-center\">\n        <div className=\"mx-auto mb-5 h-8 w-8 animate-spin rounded-full border-2 border-border border-t-accent\" />\n\n        <p className=\"text-sm text-muted\">\n          Loading portfolio...\n        </p>\n      </div>\n    </main>\n  );\n}\n"],"names":["Loading","className"],"mappings":";;;;;;AAAe,SAASA;IACtB,qBACE,8OAAC;QAAKC,WAAU;kBACd,cAAA,8OAAC;YAAIA,WAAU;;8BACb,8OAAC;oBAAIA,WAAU;;;;;;8BAEf,8OAAC;oBAAEA,WAAU;8BAAqB;;;;;;;;;;;;;;;;;AAM1C"}}]
-}

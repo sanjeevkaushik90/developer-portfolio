@@ -1,1 +1,34 @@
 node_modules
+
+# Next.js generated files
+.next/
+out/
+build/
+
+# Dependencies
+node_modules/
+
+# Local environment files
+.env*
+!.env.example
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# OS and editor files
+.DS_Store
+.vscode/
+
+# Next.js generated files
+.next/
+out/
+build/
+
+# Dependencies
+node_modules/
+
+# Local environment files
+.env*
+!.env.example
