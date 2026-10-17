@@ -3,6 +3,7 @@ import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/hero/Hero";
 import Skills from "@/sections/Skills";
 import Projects from "@/sections/Projects";
+import Contact from "@/components/contact/ContactPage";
 
 export default function HomePage() {
   return (
@@ -11,6 +12,7 @@ export default function HomePage() {
       <Hero />
       <Skills />
       <Projects />
+      <Contact />
 
 
       

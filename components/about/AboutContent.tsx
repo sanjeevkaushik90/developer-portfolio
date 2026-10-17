@@ -10,6 +10,11 @@ import ProfilePhoto from "./ProfilePhoto";
  * it is given below: photo, label, heading, paragraphs, then the tags, then the two closing sections.
  * Opacity and a small upward move only: no bounce, blur, typing effect or continuous motion.
  */
+
+
+
+
+
 const rise: Variants = {
   hidden: { opacity: 0, y: 14 },
   show: (delay: number) => ({ opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut", delay } }),

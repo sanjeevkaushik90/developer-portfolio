@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, MotionConfig, motion } from "motion/react";
 import { FiArrowUpRight, FiMenu, FiTerminal, FiX } from "react-icons/fi";
@@ -7,15 +9,25 @@ import { FiArrowUpRight, FiMenu, FiTerminal, FiX } from "react-icons/fi";
 type NavLink = {
   label: string;
   id: string;
+  /**
+   * Home-page sections use "/#id" so they also work from other pages (like /contact): from the home page they
+   * scroll, from elsewhere they go home first. Contact is a page of its own.
+   */
+  href: string;
 };
 
 const NAV_LINKS: readonly NavLink[] = [
-  { label: "Home", id: "home" },
-  { label: "About", id: "about" },
-  { label: "Skills", id: "skills" },
-  { label: "Projects", id: "projects" },
-  { label: "Contact", id: "contact" },
+  { label: "Home", id: "home", href: "/#home" },
+  { label: "About", id: "about", href: "/#about" },
+  { label: "Skills", id: "skills", href: "/#skills" },
+  { label: "Projects", id: "projects", href: "/#projects" },
+  { label: "Contact", id: "contact", href: "/contact" },
 ] as const;
+
+const CONTACT_HREF = "/contact";
+
+// Only the links that point at sections of the home page take part in the scroll highlighting.
+const SECTION_IDS: readonly string[] = NAV_LINKS.filter((l) => l.href.startsWith("/#")).map((l) => l.id);
 
 const focusRing =
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B8A0FF]";
@@ -49,7 +61,16 @@ function useActiveSection(ids: readonly string[]): string {
 
 export default function Navbar() {
   const [open, setOpen] = useState<boolean>(false);
-  const activeId = useActiveSection(NAV_LINKS.map((l) => l.id));
+  const pathname = usePathname();
+  const sectionId = useActiveSection(SECTION_IDS);
+  const onHome = pathname === "/";
+
+  /** "location" for the home-page section in view, "page" for the page you are on, otherwise nothing. */
+  const currentFor = (link: NavLink): "page" | "location" | undefined => {
+    if (link.href === pathname) return "page";
+    if (onHome && link.href.startsWith("/#") && sectionId === link.id) return "location";
+    return undefined;
+  };
 
   const close = () => setOpen(false);
 
@@ -84,8 +105,8 @@ export default function Navbar() {
         <div className="relative mx-auto max-w-5xl">
           <div className="flex items-center justify-between gap-4 rounded-2xl border border-[#343044] bg-[#100F17]/75 px-3 py-2.5 shadow-lg shadow-black/30 backdrop-blur-md sm:px-4">
             {/* Brand */}
-            <a
-              href="#home"
+            <Link
+              href="/#home"
               onClick={close}
               aria-label="Sanjeev Kaushik, back to top"
               className={`group flex items-center gap-2.5 rounded-lg ${focusRing}`}
@@ -96,18 +117,19 @@ export default function Navbar() {
               <span className="whitespace-nowrap text-sm font-semibold tracking-tight text-[#F2F0F7] transition-colors duration-200 group-hover:text-[#B8A0FF] sm:text-base">
                 Sanjeev Kaushik
               </span>
-            </a>
+            </Link>
 
             {/* Desktop navigation */}
             <nav aria-label="Primary" className="hidden md:block">
               <ul className="flex items-center gap-1">
                 {NAV_LINKS.map((link) => {
-                  const isActive = activeId === link.id;
+                  const current = currentFor(link);
+                  const isActive = current !== undefined;
                   return (
                     <li key={link.id}>
-                      <a
-                        href={`#${link.id}`}
-                        aria-current={isActive ? "location" : undefined}
+                      <Link
+                        href={link.href}
+                        aria-current={current}
                         className={`relative block rounded-lg px-3.5 py-2 text-sm font-medium transition-colors duration-200 hover:text-[#F2F0F7] ${focusRing} ${
                           isActive ? "text-[#F2F0F7]" : "text-[#A6A0B5]"
                         }`}
@@ -121,7 +143,7 @@ export default function Navbar() {
                             className="absolute inset-x-3.5 -bottom-0.5 h-px bg-[#B8A0FF]"
                           />
                         )}
-                      </a>
+                      </Link>
                     </li>
                   );
                 })}
@@ -129,13 +151,13 @@ export default function Navbar() {
             </nav>
 
             {/* Desktop CTA */}
-            <a
-              href="#contact"
+            <Link
+              href={CONTACT_HREF}
               className={`hidden items-center gap-1.5 rounded-xl bg-[#B8A0FF] px-4 py-2 text-sm font-semibold text-[#100F17] transition-transform duration-200 hover:-translate-y-0.5 md:inline-flex ${focusRing}`}
             >
               Let&apos;s talk
               <FiArrowUpRight aria-hidden="true" className="size-4" />
-            </a>
+            </Link>
 
             {/* Mobile toggle */}
             <button
@@ -169,13 +191,14 @@ export default function Navbar() {
                 <nav aria-label="Mobile">
                   <ul className="flex flex-col gap-1">
                     {NAV_LINKS.map((link) => {
-                      const isActive = activeId === link.id;
+                      const current = currentFor(link);
+                      const isActive = current !== undefined;
                       return (
                         <li key={link.id}>
-                          <a
-                            href={`#${link.id}`}
+                          <Link
+                            href={link.href}
                             onClick={close}
-                            aria-current={isActive ? "location" : undefined}
+                            aria-current={current}
                             className={`block rounded-lg px-3 py-3 text-base font-medium transition-colors duration-200 hover:bg-[#1B1926] hover:text-[#F2F0F7] ${focusRing} ${
                               isActive
                                 ? "bg-[#1B1926] text-[#F2F0F7]"
@@ -183,20 +206,20 @@ export default function Navbar() {
                             }`}
                           >
                             {link.label}
-                          </a>
+                          </Link>
                         </li>
                       );
                     })}
                   </ul>
                 </nav>
-                <a
-                  href="#contact"
+                <Link
+                  href={CONTACT_HREF}
                   onClick={close}
                   className={`mt-3 flex items-center justify-center gap-1.5 rounded-xl bg-[#B8A0FF] px-4 py-3 text-sm font-semibold text-[#100F17] ${focusRing}`}
                 >
                   Let&apos;s talk
                   <FiArrowUpRight aria-hidden="true" className="size-4" />
-                </a>
+                </Link>
               </motion.div>
             )}
           </AnimatePresence>

@@ -255,6 +255,7 @@ export default function Hero() {
               so the laptop gets about 47% of the row instead of 38%.
             */}
             <div className="relative mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-6 sm:px-10 md:grid-cols-2 md:gap-x-10 md:gap-y-4 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.5fr)_minmax(0,0.85fr)] lg:gap-x-6 xl:max-w-[92rem] xl:gap-x-8">
+
               {/* Left: identity */}
               <motion.div {...enter(0.05)} className="order-1">
                 <motion.div
@@ -266,22 +267,23 @@ export default function Hero() {
                   </p>
 
                   <h1 className="mt-3 text-4xl font-semibold leading-[1.02] tracking-tight text-[#F2F0F7] sm:text-5xl">
-                    <span className="block">Sanjeev</span>
+                    <span className="block text-purple-600">Sanjeev</span>
                     <span className="block">Kaushik</span>
                   </h1>
 
-                  <p className="mt-3 text-base font-medium text-[#F2F0F7]/90 sm:text-lg">
-                    Developer &amp; Security Enthusiast
+                  <p className="mt-3 text-base font-medium text-purple-500 font-semibold sm:text-lg">
+                    Developer focused on Python, backend &amp; cybersecurity
                   </p>
 
-                  <p className="mt-3 max-w-[30ch] text-sm leading-relaxed text-[#A6A0B5] sm:text-base">
-                    I build software, solve problems, and explore how systems work.
+                  <p className="mt-3 max-w-[32ch] text-sm leading-relaxed text-[#A6A0B5] sm:text-base">
+                    I learn by building. Currently exploring safe code execution,
+                    networking labs, and practical full-stack tools.
                   </p>
 
                   <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
                     <a
                       href="#projects"
-                      className={`inline-flex items-center justify-center rounded-xl bg-[#B8A0FF] px-5 py-2.5 text-sm font-semibold text-[#100F17] transition-transform duration-200 hover:-translate-y-0.5 ${focusRing}`}
+                      className={`inline-flex items-center justify-center rounded-xl bg-purple-600 px-5 py-2.5 text-sm font-semibold text-[#100F17] transition-transform duration-200 hover:-translate-y-0.5 ${focusRing}`}
                     >
                       Explore My Work
                     </a>
@@ -347,22 +349,26 @@ export default function Hero() {
                     A little about me
                   </p>
 
-                  <h2 className="mt-3 text-2xl font-semibold leading-tight tracking-tight text-[#F2F0F7] sm:text-3xl">
+                  <h2 className="mt-3 text-2xl font-semibold leading-tight tracking-tight text-purple-400 sm:text-3xl">
                     Curious by nature.
                   </h2>
 
                   <p className="mt-3 max-w-[34ch] text-sm leading-relaxed text-[#A6A0B5] sm:text-base">
-                    I enjoy solving logical problems, building practical software, and
-                    understanding what happens beneath the surface.
+                    I enjoy solving{" "}
+                    <span className="text-[#B8A0FF]">logical problems</span>, building{" "}
+                    <span className="text-[#B8A0FF]">practical software</span>, and understanding
+                    what happens <span className="text-[#B8A0FF]">beneath the surface</span>.
                   </p>
 
                   <p className="mt-3 max-w-[34ch] text-sm leading-relaxed text-[#A6A0B5] sm:text-base">
-                    Currently learning by building projects and exploring cybersecurity.
+                    Currently learning by{" "}
+                    <span className="text-[#B8A0FF]">building projects</span> and exploring{" "}
+                    <span className="text-[#B8A0FF]">cybersecurity</span>.
                   </p>
 
                   <a
                     href="#about"
-                    className={`group mt-5 inline-flex items-center gap-1 rounded text-sm font-medium text-[#B8A0FF] transition-colors duration-200 hover:text-[#F2F0F7] ${focusRing}`}
+                    className={`group mt-5 inline-flex items-center gap-1  text-sm font-medium text-[#B8A0FF] bg-purple-600 p-3 rounded-2xl transition-colors duration-200 hover:text-[#F2F0F7] ${focusRing}`}
                   >
                     Discover my journey
                     <FiArrowUpRight
@@ -372,6 +378,8 @@ export default function Hero() {
                   </a>
                 </motion.div>
               </motion.div>
+
+
             </div>
           </motion.div>
 
