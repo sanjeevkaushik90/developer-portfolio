@@ -6,26 +6,26 @@ import { FiUser } from "react-icons/fi";
 import { PROFILE_PHOTO } from "../../app/about/aboutCopy";
 
 type ProfilePhotoProps = {
-  /** The `sizes` hint for next/image, matching how wide the photo is shown. */
   sizes: string;
   className?: string;
   style?: CSSProperties;
 };
 
-/** The framed profile photo, with a neutral placeholder until public/images/profile.jpg exists. */
 export default function ProfilePhoto({ sizes, className = "", style }: ProfilePhotoProps) {
   const [failed, setFailed] = useState(false);
 
   return (
-    <div className="relative">
-      {/* Soft lavender glow behind the frame (outside it, so the frame's rounded clipping does not cut it off) */}
+    <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg mx-auto">
+      {/* Soft lavender glow */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -inset-6 bg-[radial-gradient(closest-side,rgba(184,160,255,0.20),rgba(184,160,255,0.06)_60%,transparent)]"
+        className="pointer-events-none absolute -inset-8 bg-[radial-gradient(closest-side,rgba(184,160,255,0.22),rgba(184,160,255,0.07)_55%,transparent)]"
       />
+
       <div
         style={style}
-        className={`relative aspect-4/5 w-full overflow-hidden rounded-2xl  bg-transparent ${className}`}      >
+        className={`relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-transparent shadow-xl shadow-black/20 ${className}`}
+      >
         {failed ? (
           <div
             role="img"
@@ -41,7 +41,7 @@ export default function ProfilePhoto({ sizes, className = "", style }: ProfilePh
             fill
             priority
             sizes={sizes}
-            className="object-cover object-[center_35%] scale-[1.08]"
+            className="object-cover object-[center_30%]"
             onError={() => setFailed(true)}
           />
         )}
