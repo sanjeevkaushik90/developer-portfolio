@@ -4,9 +4,9 @@ import dynamic from "next/dynamic";
 import { useEffect, useRef, useSyncExternalStore } from "react";
 import { MotionConfig, motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { FiArrowUpRight } from "react-icons/fi";
-import AboutBackdrop from "../about/AboutBackdrop";
-import { AboutDetails, AboutIntro } from "./AboutScene";
 import { seg } from "./scrollMath";
+import ProfilePhoto from "../about/ProfilePhoto";
+import AboutTerminal from "../about/AboutTerminal";
 
 const LaptopModel = dynamic(() => import("./LaptopModel"), {
   ssr: false,
@@ -389,22 +389,36 @@ export default function Hero() {
             style={desktop ? { opacity: aboutOpacity, visibility: aboutVisibility } : undefined}
             className="relative px-6 py-20 sm:px-10 lg:pointer-events-none lg:absolute lg:inset-0 lg:flex lg:items-center lg:py-0 lg:pt-20 lg:opacity-0"
           >
+            {/*  */}
+
+            {/* Scene 3: About — avatar and terminal */}
             <motion.div
-              aria-hidden="true"
-              style={desktop ? { opacity: aboutGlow } : undefined}
-              className="pointer-events-none absolute inset-0"
+              id={desktop ? undefined : "about"}
+              style={
+                desktop
+                  ? { opacity: aboutOpacity, visibility: aboutVisibility }
+                  : undefined
+              }
+              className="relative px-6 py-12 sm:px-10 lg:pointer-events-auto lg:absolute lg:inset-0 lg:flex lg:items-center lg:py-0 lg:pt-20 lg:opacity-0"
             >
-              <AboutBackdrop />
+            
+
+              <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 md:grid-cols-[1fr_1.2fr] md:gap-12">
+                <div className="relative mx-auto w-full max-w-[480px] md:max-w-none">
+                  <ProfilePhoto sizes="(min-width: 768px) 42vw, 95vw" />
+                </div>
+
+                <div className="min-w-0 w-full">
+                  <AboutTerminal />
+                </div>
+              </div>
             </motion.div>
-            <div className="relative w-full">
-              <AboutIntro progress={p} scrollDriven={desktop} translate={!reduced} />
-            </div>
+
           </motion.div>
         </div>
       </section>
 
-      {/* The rest of About, in normal page flow: once the transition ends, scrolling simply continues. */}
-      <AboutDetails />
+
     </MotionConfig>
   );
 }

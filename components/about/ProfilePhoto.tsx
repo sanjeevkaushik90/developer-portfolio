@@ -15,17 +15,14 @@ export default function ProfilePhoto({ sizes, className = "", style }: ProfilePh
   const [failed, setFailed] = useState(false);
 
   return (
-    <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg mx-auto">
-      {/* Soft lavender glow */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -inset-8 bg-[radial-gradient(closest-side,rgba(184,160,255,0.22),rgba(184,160,255,0.07)_55%,transparent)]"
-      />
+    <div className="relative w-full">
 
       <div
         style={style}
-        className={`relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-transparent shadow-xl shadow-black/20 ${className}`}
+        className={`relative aspect-4/5 w-full overflow-hidden rounded-2xl bg-transparent shadow-xl shadow-black/20 ${className}`}
       >
+
+        
         {failed ? (
           <div
             role="img"
@@ -41,7 +38,7 @@ export default function ProfilePhoto({ sizes, className = "", style }: ProfilePh
             fill
             priority
             sizes={sizes}
-            className="object-cover object-[center_30%]"
+            className="object-cover object-[center_60%]"
             onError={() => setFailed(true)}
           />
         )}

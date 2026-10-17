@@ -8,6 +8,7 @@
 
 export type ContactConfig = {
   /** TODO: your real email address, for example "name@example.com". */
+  number: string;
   email: string;
   /** TODO: your real GitHub profile address, for example "https://github.com/your-username". */
   githubUrl: string;
@@ -19,7 +20,7 @@ export type ContactConfig = {
 
 
 export const CONTACT: ContactConfig = {
-
+  number: "+91 9068438770", // TODO: add your real phone number
   email: "sanjeevkaushik90684@gmail.com", // TODO: add your real email
   githubUrl: "https://github.com/sanjeevkaushik90",// TODO: add your real GitHub profile URL
   linkedinUrl: "https://www.linkedin.com/in/sanjeev-kaushik-16aaa13a1/", // TODO: add your real LinkedIn profile URL
