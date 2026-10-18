@@ -16,13 +16,10 @@ export default function ProfilePhoto({ sizes, className = "", style }: ProfilePh
 
   return (
     <div className="relative w-full">
-
       <div
         style={style}
-        className={`relative aspect-4/5 w-full overflow-hidden rounded-2xl bg-transparent shadow-xl shadow-black/20 ${className}`}
+        className={`relative aspect-[3/4] w-full overflow-visible ${className}`}
       >
-
-        
         {failed ? (
           <div
             role="img"
@@ -32,15 +29,34 @@ export default function ProfilePhoto({ sizes, className = "", style }: ProfilePh
             <FiUser aria-hidden="true" className="size-16 opacity-60" />
           </div>
         ) : (
-          <Image
-            src={PROFILE_PHOTO}
-            alt="Portrait of Sanjeev Kaushik"
-            fill
-            priority
-            sizes={sizes}
-            className="object-cover object-[center_60%]"
-            onError={() => setFailed(true)}
-          />
+          <>
+            {/* Glow layer (behind the real image) */}
+            <Image
+              src={PROFILE_PHOTO}
+              alt=""
+              fill
+              sizes={sizes}
+              aria-hidden="true"
+              className="object-[center_60%] scale-20 opacity-70 blur-sm"
+              style={{
+                filter: "drop-shadow(0 0 20px rgba(184, 160, 255, 0.55))",
+              }}
+            />
+
+            {/* Main sharp image */}
+            <Image
+              src={PROFILE_PHOTO}
+              alt="Portrait of Sanjeev Kaushik"
+              fill
+              priority
+              sizes={sizes}
+              className="object-cover object-[center_-10%]"
+              style={{
+                filter: "drop-shadow(0 0 12px rgba(184, 160, 255, 0.35))",
+              }}
+              onError={() => setFailed(true)}
+            />
+          </>
         )}
       </div>
     </div>
