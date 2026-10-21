@@ -18,7 +18,7 @@ type NavLink = {
 
 const NAV_LINKS: readonly NavLink[] = [
   { label: "Home", id: "home", href: "/#home" },
-  { label: "About", id: "about", href: "/#about" },
+  { label: "About", id: "about", href: "/about" },
   { label: "Skills", id: "skills", href: "/#skills" },
   { label: "Projects", id: "projects", href: "/#projects" },
   { label: "Contact", id: "contact", href: "/contact" },
@@ -130,9 +130,8 @@ export default function Navbar() {
                       <Link
                         href={link.href}
                         aria-current={current}
-                        className={`relative block rounded-lg px-3.5 py-2 text-sm font-medium transition-colors duration-200 hover:text-[#F2F0F7] ${focusRing} ${
-                          isActive ? "text-[#F2F0F7]" : "text-[#A6A0B5]"
-                        }`}
+                        className={`relative block rounded-lg px-3.5 py-2 text-sm font-medium transition-colors duration-200 hover:text-[#F2F0F7] ${focusRing} ${isActive ? "text-[#F2F0F7]" : "text-[#A6A0B5]"
+                          }`}
                       >
                         {link.label}
                         {isActive && (
@@ -199,11 +198,10 @@ export default function Navbar() {
                             href={link.href}
                             onClick={close}
                             aria-current={current}
-                            className={`block rounded-lg px-3 py-3 text-base font-medium transition-colors duration-200 hover:bg-[#1B1926] hover:text-[#F2F0F7] ${focusRing} ${
-                              isActive
+                            className={`block rounded-lg px-3 py-3 text-base font-medium transition-colors duration-200 hover:bg-[#1B1926] hover:text-[#F2F0F7] ${focusRing} ${isActive
                                 ? "bg-[#1B1926] text-[#F2F0F7]"
                                 : "text-[#A6A0B5]"
-                            }`}
+                              }`}
                           >
                             {link.label}
                           </Link>
